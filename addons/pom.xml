@@ -24,7 +24,7 @@
     <parent>
         <groupId>be.atbash.ee.jessie</groupId>
         <artifactId>jessie-parent</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -33,6 +33,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>microprofile-servers</module>
         <module>primefaces</module>
         <module>deltaspike</module>
         <module>octopus</module>

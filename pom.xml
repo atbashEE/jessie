@@ -23,7 +23,7 @@
 
     <groupId>be.atbash.ee.jessie</groupId>
     <artifactId>jessie-parent</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.2-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -32,7 +32,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <octopus.version>0.9.7.2-SNAPSHOT</octopus.version>
+        <octopus.version>0.9.7.2</octopus.version>
         <deltaspike.version>1.8.1</deltaspike.version>
 
         <primefaces.version>6.1</primefaces.version>
@@ -40,28 +40,6 @@
 
     <name>Jessie</name>
     <inceptionYear>2017</inceptionYear> <!-- Some classes are created for the first time in that year -->
-    <description>Atbash Utils parent</description>
-    <url>https://github.com/atbashEE/atbash-utils</url>
-
-    <developers>
-        <developer>
-            <id>rubus</id>
-            <name>Rudy De Busscher</name>
-            <email>rdebusscher@gmail.com</email>
-            <organization>Atbash, Belgium</organization>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
-
 
     <modules>
         <module>core</module>

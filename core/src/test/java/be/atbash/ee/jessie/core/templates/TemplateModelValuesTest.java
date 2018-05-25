@@ -24,7 +24,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -47,13 +48,9 @@ public class TemplateModelValuesTest {
         minimalModel.setSpecification(new JessieSpecification());
         when(templateModelLoaderMock.loadTemplateValues("minimal")).thenReturn(minimalModel);
 
-        JessieModel defaultModel = new JessieModel();
-        defaultModel.setSpecification(new JessieSpecification());
-        when(templateModelLoaderMock.loadTemplateValues("default")).thenReturn(defaultModel);
-
         templateModelValues.applyTemplateValues(model);
 
-        verify(templateModelLoaderMock, times(2)).loadTemplateValues(anyString());
+        verify(templateModelLoaderMock).loadTemplateValues(anyString());
     }
 
 }

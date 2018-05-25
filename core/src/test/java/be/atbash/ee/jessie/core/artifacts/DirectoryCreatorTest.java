@@ -36,11 +36,16 @@ public class DirectoryCreatorTest {
             public void createDirectory(String directoryPath) {
 
             }
+
+            @Override
+            public void removeDirectory(String directoryPath) {
+
+            }
         };
     }
 
     @Test
-    public void createPathForGroupAndArtifact() throws Exception {
+    public void createPathForGroupAndArtifact() {
         JessieMaven model = new JessieMaven();
         model.setGroupId("be.atbash.ee.jessie");
         model.setArtifactId("demo");

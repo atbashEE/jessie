@@ -18,13 +18,7 @@ directory: demo
 maven:
    groupId: be.atbash.ee.jessie.test
    artifactId: demo
-addons :
-   - primefaces
-    #- octopus
 specification:
-   javaEE : 6
-   structure : single
-   views:
-   - "JSF"
-#template: octopus
-#template: opinionated
+   MP : 1.2
+options:
+   mp.server: wildfly-swarm

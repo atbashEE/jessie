@@ -24,7 +24,7 @@
     <parent>
         <groupId>be.atbash.ee.jessie</groupId>
         <artifactId>jessie-parent</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -56,6 +56,11 @@
         <dependency>
             <groupId>be.atbash.ee.jessie</groupId>
             <artifactId>deltaspike-addon</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.atbash.ee.jessie</groupId>
+            <artifactId>microprofile-servers-addon</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
