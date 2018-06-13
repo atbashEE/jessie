@@ -20,6 +20,7 @@ import be.atbash.ee.jessie.core.artifacts.FileCreator;
 import be.atbash.ee.jessie.core.artifacts.MavenCreator;
 import be.atbash.ee.jessie.core.files.ThymeleafEngine;
 import be.atbash.ee.jessie.core.model.JessieModel;
+import be.atbash.ee.jessie.core.model.OptionValue;
 
 import javax.inject.Inject;
 import java.util.Map;
@@ -31,7 +32,7 @@ import java.util.Set;
 
 public abstract class AbstractAddon implements JessieAddon {
 
-    protected Map<String, String> options;
+    protected Map<String, OptionValue> options;
     protected Map<String, String> defaultOptions;
 
     @Inject
@@ -44,7 +45,7 @@ public abstract class AbstractAddon implements JessieAddon {
     protected FileCreator fileCreator;
 
     @Override
-    public final void addonOptions(Map<String, String> options) {
+    public final void addonOptions(Map<String, OptionValue> options) {
         this.options = options;
     }
 

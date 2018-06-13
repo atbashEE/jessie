@@ -57,7 +57,7 @@ public class OctopusAddon extends AbstractAddon {
 
     @Override
     public void adaptMavenModel(Model pomFile, JessieModel model) {
-        String version = options.get("version");
+        String version = options.get("version").getSingleValue();
 
         String artifactId = null;
         if (model.getSpecification().getViews().contains(ViewType.JSF)) {

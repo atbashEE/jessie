@@ -53,7 +53,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
 
     @Override
     public String addonName() {
-        return "microprofile-servers";
+        return "mp";
     }
 
     @Override
@@ -62,7 +62,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
     }
 
     protected void validateModel(JessieModel model) {
-        String serverName = model.getOptions().get("mp.server");
+        String serverName = model.getOptions().get("mp.server").getSingleValue();
         SupportedServer supportedServer = SupportedServer.valueFor(serverName);
 
         if (supportedServer == null) {
@@ -80,7 +80,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
     @Override
     public void adaptMavenModel(Model pomFile, JessieModel model) {
 
-        String serverName = model.getOptions().get("mp.server");
+        String serverName = model.getOptions().get("mp.server").getSingleValue();
         for (Profile profile : serverPomModel.getProfiles()) {
             if (profile.getId().equals(serverName)) {
                 pomFile.getProfiles().add(profile);
@@ -100,7 +100,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
 
     @Override
     public Set<String> alternativesNames(JessieModel model) {
-        String serverName = model.getOptions().get("mp.server");
+        String serverName = model.getOptions().get("mp.server").getSingleValue();
         SupportedServer supportedServer = SupportedServer.valueFor(serverName);
 
         Set<String> alternatives = new HashSet<>();
@@ -125,7 +125,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
         Set<String> alternatives = model.getParameter(JessieModel.Parameter.ALTERNATIVES);
         Map<String, String> variables = model.getParameter(JessieModel.Parameter.VARIABLES);
 
-        String serverName = model.getOptions().get("mp.server");
+        String serverName = model.getOptions().get("mp.server").getSingleValue();
         SupportedServer supportedServer = SupportedServer.valueFor(serverName);
 
         if (supportedServer == SupportedServer.LIBERTY) {

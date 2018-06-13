@@ -22,3 +22,6 @@ specification:
    MP : 1.2
 options:
    mp.server: wildfly-swarm
+   mp.specs:
+   - "config"
+   - "metrics"

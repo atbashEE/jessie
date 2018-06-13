@@ -15,7 +15,9 @@
  */
 package be.atbash.ee.jessie.core.model;
 
+import be.atbash.ee.jessie.core.model.deserializer.OptionsDeserializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -37,7 +39,9 @@ public class JessieModel {
     private String template;
 
     private List<String> addons = new ArrayList<>();
-    private Map<String, String> options = new HashMap<>();
+
+    @JsonDeserialize(using = OptionsDeserializer.class)
+    private Map<String, OptionValue> options = new HashMap<>();
 
     @JsonIgnore
     private TechnologyStack technologyStack;
@@ -91,7 +95,7 @@ public class JessieModel {
         this.addons = addons;
     }
 
-    public Map<String, String> getOptions() {
+    public Map<String, OptionValue> getOptions() {
         return options;
     }
 

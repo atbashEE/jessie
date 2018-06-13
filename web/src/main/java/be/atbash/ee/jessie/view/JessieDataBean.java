@@ -144,7 +144,7 @@ public class JessieDataBean implements Serializable {
 
             specifications.setMicroProfileVersion(MicroProfileVersion.MP12);
 
-            model.getOptions().put("mp.server", supportedServer);
+            model.getOptions().put("mp.server", new OptionValue(supportedServer));
         }
 
         model.setSpecification(specifications);
