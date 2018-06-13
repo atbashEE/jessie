@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package be.atbash.ee.jessie.core.model;
+package be.atbash.ee.jessie.addon.microprofile.servers;
 
 public enum SupportedServer {
     WILDFLY_SWARM("wildfly-swarm"), LIBERTY("liberty"), KUMULUZEE("kumuluzEE"), PAYARA_MICRO("payara-micro");

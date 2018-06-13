@@ -15,9 +15,9 @@
  */
 package be.atbash.ee.jessie;
 
+import be.atbash.ee.jessie.addon.microprofile.servers.SupportedServer;
 import be.atbash.ee.jessie.core.model.JavaEEVersion;
 import be.atbash.ee.jessie.core.model.JavaSEVersion;
-import be.atbash.ee.jessie.core.model.SupportedServer;
 import be.atbash.ee.jessie.core.model.TechnologyStack;
 
 import javax.annotation.PostConstruct;

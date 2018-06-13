@@ -19,7 +19,6 @@ import be.atbash.ee.jessie.core.artifacts.CDICreator;
 import be.atbash.ee.jessie.core.artifacts.MavenCreator;
 import be.atbash.ee.jessie.core.exception.JessieConfigurationException;
 import be.atbash.ee.jessie.core.model.JessieModel;
-import be.atbash.ee.jessie.core.model.SupportedServer;
 import be.atbash.ee.jessie.spi.AbstractAddon;
 import be.atbash.ee.jessie.spi.JessieAddon;
 import be.atbash.ee.jessie.spi.MavenHelper;
