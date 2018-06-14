@@ -57,7 +57,8 @@
                 <p:outputLabel value="MicroProfile Version" for="mpVersion"
                                rendered="#{jessieDataBean.technologyStackTypeMP}"/>
                 <p:selectOneMenu id="mpVersion" value="#{jessieDataBean.mpVersion}"
-                                 rendered="#{jessieDataBean.technologyStackTypeMP}">
+                                 rendered="#{jessieDataBean.technologyStackTypeMP}"
+                                 required="#{jessieDataBean.technologyStackTypeMP}">
                     <f:selectItems value="${dataBean.mpItems}"/>
                 </p:selectOneMenu>
 

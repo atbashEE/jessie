@@ -50,7 +50,7 @@ public class JessieDataBean implements Serializable {
     private String technologyStack;
     private String javaEEVersion;
     private String javaSEVersion;
-    private String mpVersion = "1.2"; // TODO In the future we will support more versions.
+    private String mpVersion;
     private String supportedServer;
 
     private TechnologyStack technologyStackType;
