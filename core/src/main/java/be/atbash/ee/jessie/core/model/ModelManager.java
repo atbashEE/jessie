@@ -67,13 +67,15 @@ public class ModelManager {
         List<JessieAddon> allAddons = determineAddons(model);
         model.addParameter(JessieModel.Parameter.ADDONS, allAddons);
 
+        setAddonOptions(allAddons, model.getOptions());
+
         modelValidation.validateByAddons(model);
 
         Set<String> alternatives = determineAlternatives(model, allAddons);
         model.addParameter(JessieModel.Parameter.ALTERNATIVES, alternatives);
 
         Map<String, String> variables = templateVariableProvider.determineVariables(model);
-        model.addParameter(JessieModel.Parameter.VARIABLES, variables);
+        model.addVariables(variables);
     }
 
     private Set<String> determineAlternatives(JessieModel model, List<JessieAddon> allAddons) {
@@ -107,7 +109,6 @@ public class ModelManager {
                         .map(JessieAddon::addonName)
                         .collect(Collectors.toList()));
 
-        setAddonOptions(allAddons, model.getOptions());
         return allAddons;
     }
 

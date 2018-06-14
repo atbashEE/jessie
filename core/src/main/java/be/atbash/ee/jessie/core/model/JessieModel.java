@@ -52,6 +52,9 @@ public class JessieModel {
     @JsonIgnore
     private Set<String> alternatives;  // FIXME Why was this needed?
 
+    @JsonIgnore
+    private Map<String, String> variables = new HashMap<>();
+
     public String getDirectory() {
         return directory;
     }
@@ -107,6 +110,18 @@ public class JessieModel {
         this.technologyStack = technologyStack;
     }
 
+    public void addVariable(String name, String value) {
+        variables.put(name, value);
+    }
+
+    public void addVariables(Map<String, String> variables) {
+        variables.forEach(this::addVariable);
+    }
+
+    public Map<String, String> getVariables() {
+        return variables;
+    }
+
     public void addParameter(Parameter parameter, Object value) {
         parameters.put(parameter.name(), value);
     }
@@ -116,7 +131,7 @@ public class JessieModel {
     }
 
     public enum Parameter {
-        FILENAME, ALTERNATIVES, ADDONS, VARIABLES
+        FILENAME, ALTERNATIVES, ADDONS
     }
 
 }
