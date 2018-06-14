@@ -31,7 +31,7 @@
 
     <profiles>
         <profile>
-            <id>wildfly-swarm</id>
+            <id>wildfly-swarm-1.2</id>
 
             <properties>
                 <version.wildfly.swarm>2017.12.1</version.wildfly.swarm>
@@ -79,7 +79,7 @@
         </profile>
 
         <profile>
-            <id>liberty</id>
+            <id>liberty-1.2</id>
 
             <properties>
                 <openliberty.maven.version>2.0</openliberty.maven.version>
@@ -149,7 +149,7 @@
         </profile>
 
         <profile>
-            <id>kumuluzEE</id>
+            <id>kumuluzEE-1.2</id>
 
             <properties>
                 <kumuluz.version>2.5.2</kumuluz.version>
@@ -197,7 +197,7 @@
         </profile>
 
         <profile>
-            <id>payara-micro</id>
+            <id>payara-micro-1.2</id>
             <build>
                 <plugins>
                     <plugin>

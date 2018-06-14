@@ -24,4 +24,4 @@ options:
    mp.server: wildfly-swarm
    mp.specs:
    - "config"
-   - "metrics"
+   - "health_metrics"

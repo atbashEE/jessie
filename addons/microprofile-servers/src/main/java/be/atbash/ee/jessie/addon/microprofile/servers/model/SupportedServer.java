@@ -15,17 +15,34 @@
  */
 package be.atbash.ee.jessie.addon.microprofile.servers.model;
 
+import be.atbash.ee.jessie.core.model.MicroProfileVersion;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public enum SupportedServer {
-    WILDFLY_SWARM("wildfly-swarm"), LIBERTY("liberty"), KUMULUZEE("kumuluzEE"), PAYARA_MICRO("payara-micro");
+    // @formatter:off
+    WILDFLY_SWARM("wildfly-swarm", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
+    , LIBERTY("liberty", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13))
+    , KUMULUZEE("kumuluzEE", Collections.singletonList(MicroProfileVersion.MP12))
+    , PAYARA_MICRO("payara-micro", Arrays.asList(MicroProfileVersion.MP12, MicroProfileVersion.MP13));
+    // @formatter:on
 
     private String name;
+    private List<MicroProfileVersion> mpVersions;
 
-    SupportedServer(String name) {
+    SupportedServer(String name, List<MicroProfileVersion> mpVersions) {
         this.name = name;
+        this.mpVersions = mpVersions;
     }
 
     public String getName() {
         return name;
+    }
+
+    public List<MicroProfileVersion> getMpVersions() {
+        return mpVersions;
     }
 
     public static SupportedServer valueFor(String data) {
