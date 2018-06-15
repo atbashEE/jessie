@@ -34,19 +34,19 @@ public enum MicroprofileSpec {
     ;
     // @formatter:on
 
-    private String name;
+    private String code;
     private String label;
     private List<MicroProfileVersion> mpVersions;
 
-    MicroprofileSpec(String name, String label, List<MicroProfileVersion> mpVersions) {
-        this.name = name;
+    MicroprofileSpec(String code, String label, List<MicroProfileVersion> mpVersions) {
+        this.code = code;
         this.label = label;
 
         this.mpVersions = mpVersions;
     }
 
-    public String getName() {
-        return name;
+    public String getCode() {
+        return code;
     }
 
     public List<MicroProfileVersion> getMpVersions() {
@@ -60,7 +60,7 @@ public enum MicroprofileSpec {
     public static MicroprofileSpec valueFor(String data) {
         MicroprofileSpec result = null;
         for (MicroprofileSpec spec : MicroprofileSpec.values()) {
-            if (spec.name.equals(data)) {
+            if (spec.code.equals(data)) {
                 result = spec;
             }
         }

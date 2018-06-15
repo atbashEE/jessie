@@ -84,7 +84,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
             if (microprofileSpec == null) {
                 invalidSpecs.add(spec);
             } else {
-                model.addVariable("mp_" + microprofileSpec.getName(), "true");
+                model.addVariable("mp_" + microprofileSpec.getCode(), "true");
                 microprofileSpecs.add(microprofileSpec);
             }
         }
