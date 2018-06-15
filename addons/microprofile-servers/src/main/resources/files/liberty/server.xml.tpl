@@ -2,7 +2,7 @@
 <server description="${project.artifactId}">
 
     <featureManager>
-        <feature>microProfile-1.2</feature>
+        <feature>microProfile-[# th:text="${mp_version}"/]</feature>
     </featureManager>
 
     <httpEndpoint id="defaultHttpEndpoint"
