@@ -37,5 +37,18 @@
 Example Under construction (all config pieces in place)
 [/]
 
+[# th:if="${mp_open_API}"]
+<h3>Open API</h3>
+<a href="openapi" target="_blank" >Open API Documentation</a> <br/>
+[/]
+
+[# th:if="${mp_open_tracing}"]
+<h3>Open Tracing</h3>
+[/]
+
+[# th:if="${mp_rest_client}"]
+<h3>Rest Client</h3>
+[/]
+
 </body>
 </html>
