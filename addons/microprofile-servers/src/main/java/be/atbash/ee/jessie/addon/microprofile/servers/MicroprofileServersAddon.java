@@ -120,7 +120,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
         for (Profile profile : serverPomModel.getProfiles()) {
             if (profile.getId().equals(profileName)) {
                 pomFile.getProfiles().add(profile);
-                // FIXME Rename profile to servername, optionally incorporate profile directly within pom.
+                profile.setId(serverName);
             }
         }
 
