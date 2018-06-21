@@ -67,7 +67,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
     }
 
     protected void validateModel(JessieModel model) {
-        checkServerValue();
+        checkServerValue(model);
 
         handleSpecOptions(model);
         // TODO Should we forsee a Map within JessieModel to stores these things?
@@ -94,13 +94,15 @@ public class MicroprofileServersAddon extends AbstractAddon {
         }
     }
 
-    private void checkServerValue() {
+    private void checkServerValue(JessieModel model) {
         String serverName = options.get("server").getSingleValue();
         SupportedServer supportedServer = SupportedServer.valueFor(serverName);
 
         if (supportedServer == null) {
             throw new JessieConfigurationException(invalidMPServerValue(serverName));
         }
+
+        model.addVariable("mp_servername", supportedServer.getName());
     }
 
     private String invalidMPServerValue(String serverName) {
@@ -287,6 +289,8 @@ public class MicroprofileServersAddon extends AbstractAddon {
         if (microprofileSpecs.contains(MicroprofileSpec.JWT_AUTH)) {
             addTestClient(model, alternatives, variables);
         }
+
+        processTemplateFile(model.getDirectory(), "readme.md", alternatives, variables);
     }
 
     private void addTestClient(JessieModel model, Set<String> alternatives, Map<String, String> variables) {
