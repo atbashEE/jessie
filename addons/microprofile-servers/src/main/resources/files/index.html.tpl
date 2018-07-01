@@ -34,7 +34,7 @@
 
 [# th:if="${mp_JWT_auth}"]
 <h3>JWT Auth</h3>
-Example Under construction (all config pieces in place)
+Look at readme.md on how to test protected endpoint.
 [/]
 
 [# th:if="${mp_open_API}"]

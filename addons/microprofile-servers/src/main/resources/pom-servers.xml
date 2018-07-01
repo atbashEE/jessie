@@ -127,6 +127,7 @@
                             <include>runnable</include>
                             <serverName>${project.artifactId}</serverName>
                             <installAppPackages>project</installAppPackages>
+                            <configDirectory>${project.basedir}/src/main/liberty/server</configDirectory>
 
                         </configuration>
                         <executions>
@@ -197,6 +198,7 @@
                             <include>runnable</include>
                             <serverName>${project.artifactId}</serverName>
                             <installAppPackages>project</installAppPackages>
+                            <configDirectory>${project.basedir}/src/main/liberty/server</configDirectory>
 
                         </configuration>
                         <executions>

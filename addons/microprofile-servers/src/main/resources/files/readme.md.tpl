@@ -51,7 +51,7 @@ The example class **MetricController** contains an example how you can measure t
 [# th:if="${mp_JWT_auth}"]
 ### JWT Auth
 
-Using the OpenId Connect JWT token to âss authentication and authorization information to the JAX-RS endpoint. Specification [here](https://microprofile.io/project/eclipse/microprofile-rest-client)
+Using the OpenId Connect JWT token to pass authentication and authorization information to the JAX-RS endpoint. Specification [here](https://microprofile.io/project/eclipse/microprofile-rest-client)
 
 Have a look at the **JWTClient** class which calls the protected endpoint on the server from a Java Main method.
 The **ProtectedController** contains the protected endpoint since it contains the _@RolesAllowed_ annotation on the JAX-RS endppoint method.

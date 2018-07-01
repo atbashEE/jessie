@@ -39,7 +39,7 @@ public class ZipFileCreator extends FileCreator implements Serializable {
 
     @Override
     public void writeContents(String directory, String fileName, byte[] contents) {
-
+        archiveContent.put(directory + File.separator + fileName, contents);
     }
 
     public byte[] createArchive() {

@@ -135,6 +135,9 @@ public class MicroprofileServersAddon extends AbstractAddon {
         if (microprofileSpecs.contains(MicroprofileSpec.JWT_AUTH)) {
             mavenHelper.addDependency(pomFile, "com.nimbusds", "nimbus-jose-jwt", "5.7", "test");
             mavenHelper.addDependency(pomFile, "org.glassfish.jersey.core", "jersey-client", "2.25.1", "test");
+
+            mavenHelper.addDependency(pomFile, "org.bouncycastle", "bcpkix-jdk15on", "1.53", "test");
+
         }
 
     }
@@ -175,6 +178,12 @@ public class MicroprofileServersAddon extends AbstractAddon {
             directoryCreator.createDirectory(resourceDirectory);
 
             processTemplateFile(resourceDirectory, "server.xml", alternatives, variables);
+
+            resourceDirectory = model.getDirectory() + "/src/main/liberty/server/resources/security";
+
+            directoryCreator.createDirectory(resourceDirectory);
+
+            processFile(resourceDirectory, "public.jks", alternatives);
         }
 
         if (supportedServer == SupportedServer.KUMULUZEE) {
