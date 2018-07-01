@@ -18,6 +18,7 @@ package be.atbash.ee.jessie.spi;
 import be.atbash.ee.jessie.core.artifacts.DirectoryCreator;
 import be.atbash.ee.jessie.core.artifacts.FileCreator;
 import be.atbash.ee.jessie.core.artifacts.MavenCreator;
+import be.atbash.ee.jessie.core.files.FileCopyEngine;
 import be.atbash.ee.jessie.core.files.ThymeleafEngine;
 import be.atbash.ee.jessie.core.model.JessieModel;
 import be.atbash.ee.jessie.core.model.OptionValue;
@@ -37,6 +38,9 @@ public abstract class AbstractAddon implements JessieAddon {
 
     @Inject
     protected ThymeleafEngine thymeleafEngine;
+
+    @Inject
+    protected FileCopyEngine fileCopyEngine;
 
     @Inject
     protected DirectoryCreator directoryCreator;
@@ -86,6 +90,11 @@ public abstract class AbstractAddon implements JessieAddon {
     protected final void processTemplateFile(String directory, String fileName, Set<String> alternatives, Map<String, String> variables) {
         String javaFile = thymeleafEngine.processFile(fileName, alternatives, variables);
         fileCreator.writeContents(directory, fileName, javaFile);
+    }
+
+    protected final void processFile(String directory, String fileName, Set<String> alternatives) {
+        byte[] fileContent = fileCopyEngine.processFile(fileName, alternatives);
+        fileCreator.writeContents(directory, fileName, fileContent);
     }
 
 }

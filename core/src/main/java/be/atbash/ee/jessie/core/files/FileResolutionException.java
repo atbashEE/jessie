@@ -13,19 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package be.atbash.ee.jessie.core.artifacts;
+package be.atbash.ee.jessie.core.files;
+
+import be.atbash.ee.jessie.core.exception.JessieException;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  *
  */
 
-public abstract class FileCreator {
+public class FileResolutionException extends JessieException {
 
-    public abstract void writeContents(String directory, String fileName, String contents);
+    public FileResolutionException(String file, Set<String> alternatives) {
+        super(createMessage(file, alternatives));
+    }
 
-    public abstract void writeContents(String directory, String fileName, byte[] contents);
-
-    public void createEmptyFile(String directory, String fileName) {
-        writeContents(directory, fileName, "");
+    private static String createMessage(String file, Set<String> alternatives) {
+        String alternativeInfo = alternatives.stream().collect(Collectors.joining(", "));
+        return String.format("No file found for '%s' with alternatives '%s'", file, alternativeInfo);
     }
 }

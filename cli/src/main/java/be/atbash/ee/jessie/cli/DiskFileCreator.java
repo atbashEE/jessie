@@ -19,9 +19,7 @@ import be.atbash.ee.jessie.core.artifacts.FileCreator;
 import be.atbash.ee.jessie.core.exception.TechnicalException;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  *
@@ -33,6 +31,18 @@ public class DiskFileCreator extends FileCreator {
         File file = new File(directory, fileName);
         try {
             try (FileWriter writer = new FileWriter(file)) {
+                writer.write(contents);
+            }
+        } catch (IOException e) {
+            throw new TechnicalException(e);
+        }
+
+    }
+
+    public void writeContents(String directory, String fileName, byte[] contents) {
+        File file = new File(directory, fileName);
+        try {
+            try (OutputStream writer = new FileOutputStream(file)) {
                 writer.write(contents);
             }
         } catch (IOException e) {
