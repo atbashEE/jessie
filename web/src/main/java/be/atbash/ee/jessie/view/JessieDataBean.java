@@ -32,8 +32,8 @@ import javax.inject.Named;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @ViewAccessScoped
@@ -110,6 +110,21 @@ public class JessieDataBean implements Serializable {
                 supportedServerItems.add(new SelectItem(supportedServer.getName(), supportedServer.getName()));
             }
         }
+        randomizeSupportedServers();
+    }
+
+    private void randomizeSupportedServers() {
+        Random rnd = new Random();
+        Map<Integer, SelectItem> data = supportedServerItems
+                .stream().collect(Collectors.toMap(s -> rnd.nextInt(500),
+                Function.identity()));
+
+        supportedServerItems = new ArrayList<>(data.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new))
+                .values());
+
     }
 
     public String selectedMenuItemStyleClass(String menuItem) {
