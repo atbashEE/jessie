@@ -36,6 +36,8 @@
         <deltaspike.version>1.8.1</deltaspike.version>
 
         <primefaces.version>6.1</primefaces.version>
+
+        <atbash-utils.version>0.9.1</atbash-utils.version>
     </properties>
 
     <name>Jessie</name>

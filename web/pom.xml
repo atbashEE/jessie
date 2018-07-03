@@ -44,6 +44,12 @@
         </dependency>
 
         <dependency>
+            <groupId>be.atbash.utils</groupId>
+            <artifactId>utils-cdi</artifactId>
+            <version>${atbash-utils.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>be.atbash.ee.jessie</groupId>
             <artifactId>jessie-core</artifactId>
             <version>${project.parent.version}</version>
