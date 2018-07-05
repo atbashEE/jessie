@@ -267,7 +267,7 @@ public class MicroprofileServersAddon extends AbstractAddon {
         }
 
         if (microprofileSpecs.contains(MicroprofileSpec.FAULT_TOLERANCE)) {
-            String faultDirectory = model.getDirectory() + "/" + rootJava + "/fault";
+            String faultDirectory = model.getDirectory() + "/" + rootJava + "/resilient";
             directoryCreator.createDirectory(faultDirectory);
 
             processTemplateFile(faultDirectory, "FaultToleranceController.java", alternatives, variables);
