@@ -28,9 +28,7 @@ public abstract class DirectoryCreator {
     public abstract void removeDirectory(String directoryPath);
 
     public String createPathForGroupAndArtifact(JessieMaven mavenModel) {
-        StringBuilder result = new StringBuilder();
-        result.append(mavenModel.getGroupId()).append('.').append(mavenModel.getArtifactId());
-        return result.toString().replaceAll("\\.", "/");
+        return (mavenModel.getGroupId() + '.' + mavenModel.getArtifactId()).replaceAll("\\.", "/");
     }
 
 }
