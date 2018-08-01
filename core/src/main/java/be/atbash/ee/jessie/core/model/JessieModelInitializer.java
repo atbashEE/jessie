@@ -38,6 +38,10 @@ public class JessieModelInitializer {
         checkDirectory(model, localExecution);
 
         defineTemplate(model);
+
+        if (!model.getOptions().containsKey(BeansXMLMode.class.getName())) {
+            model.getOptions().put(BeansXMLMode.class.getName(), new OptionValue(BeansXMLMode.ANNOTATED.getMode()));
+        }
     }
 
     private void checkDirectory(JessieModel model, boolean localExecution) {
