@@ -205,7 +205,7 @@ public class JessieDataBean implements Serializable {
 
         model.setSpecification(specifications);
 
-        model.getOptions().put(BeansXMLMode.class.getName(), new OptionValue(BeansXMLMode.getValue(beansxmlMode).getMode()));
+        model.getOptions().put(BeansXMLMode.OptionName.name, new OptionValue(BeansXMLMode.getValue(beansxmlMode).getMode()));
 
         modelManager.prepareModel(model, false);
         creator.createArtifacts(model);

@@ -48,7 +48,7 @@ public class CDICreator extends AbstractCreator {
     }
 
     private BeansXMLMode getMode(JessieModel model) {
-        OptionValue optionValue = model.getOptions().get(BeansXMLMode.class.getName());
+        OptionValue optionValue = model.getOptions().get(BeansXMLMode.OptionName.name);
         BeansXMLMode mode = BeansXMLMode.IMPLICIT;
         if (optionValue != null) {
             mode = BeansXMLMode.getValue(optionValue.getSingleValue());

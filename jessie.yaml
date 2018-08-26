@@ -21,10 +21,11 @@ maven:
 specification:
    MP : 1.3
 options:
-   mp.server: liberty
+   mp.server: thorntail-v2
    mp.specs:
    - "config"
    - "health_metrics"
    - "JWT_auth"
    - "open_API"
    - "fault_tolerance"
+   BeansXMLMode: all
