@@ -25,6 +25,8 @@ import be.atbash.ee.jessie.core.model.OptionValue;
 import be.atbash.ee.jessie.spi.AbstractAddon;
 import be.atbash.ee.jessie.spi.JessieAddon;
 import be.atbash.ee.jessie.spi.MavenHelper;
+import org.apache.maven.model.Dependency;
+import org.apache.maven.model.DependencyManagement;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Profile;
 
@@ -117,12 +119,18 @@ public class MicroprofileServersAddon extends AbstractAddon {
     @Override
     public void adaptMavenModel(Model pomFile, JessieModel model) {
 
+        boolean mergeProfile = Boolean.parseBoolean(options.get("mergeProfile").getSingleValue());
+
         String serverName = options.get("server").getSingleValue();
         String profileName = serverName + "-" + model.getSpecification().getMicroProfileVersion().getCode();
         for (Profile profile : serverPomModel.getProfiles()) {
             if (profile.getId().equals(profileName)) {
-                pomFile.getProfiles().add(profile);
-                profile.setId(serverName);
+                if (mergeProfile) {
+                    mergeProfile(pomFile, profile);
+                } else {
+                    pomFile.getProfiles().add(profile);
+                    profile.setId(serverName);
+                }
             }
         }
 
@@ -140,6 +148,34 @@ public class MicroprofileServersAddon extends AbstractAddon {
 
         }
 
+    }
+
+    private void mergeProfile(Model pomFile, Profile profile) {
+        pomFile.getProperties().putAll(profile.getProperties());
+        if (profile.getDependencyManagement() != null) {
+            DependencyManagement dependencyManagement = getDependencyManagement(pomFile);
+            List<Dependency> dependencies = getDependencies(dependencyManagement);
+            dependencies.addAll(getDependencies(profile.getDependencyManagement()));
+        }
+        pomFile.getDependencies().addAll(profile.getDependencies());
+        pomFile.getBuild().getPlugins().addAll(profile.getBuild().getPlugins());
+    }
+
+    private List<Dependency> getDependencies(DependencyManagement dependencyManagement) {
+        List<Dependency> result = dependencyManagement.getDependencies();
+        if (result == null) {
+            result = new ArrayList<>();
+        }
+        return result;
+    }
+
+    private DependencyManagement getDependencyManagement(Model pomFile) {
+        DependencyManagement result = pomFile.getDependencyManagement();
+        if (result == null) {
+            result = new DependencyManagement();
+            pomFile.setDependencyManagement(result);
+        }
+        return result;
     }
 
     @Override

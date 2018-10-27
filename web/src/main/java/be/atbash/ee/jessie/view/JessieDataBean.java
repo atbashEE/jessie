@@ -65,6 +65,7 @@ public class JessieDataBean implements Serializable {
     private List<SelectItem> specs;
     private String selectedSpecDescription;
 
+    private boolean separateProfile;
     private boolean deltaspikeFeature;
     private boolean primefacesFeature;
     private boolean octopusFeature;
@@ -74,6 +75,7 @@ public class JessieDataBean implements Serializable {
     @PostConstruct
     public void init() {
         mavenData = new JessieMaven();
+        separateProfile = true;
     }
 
     public void activePage(String activeScreen) {
@@ -201,6 +203,7 @@ public class JessieDataBean implements Serializable {
 
             model.getOptions().put("mp.server", new OptionValue(supportedServer));
             model.getOptions().put("mp.specs", new OptionValue(selectedSpecs));
+            model.getOptions().put("mp.mergeProfile", new OptionValue(((Boolean)separateProfile).toString()));
         }
 
         model.setSpecification(specifications);
@@ -348,6 +351,14 @@ public class JessieDataBean implements Serializable {
 
     public boolean isHasErrors() {
         return hasErrors;
+    }
+
+    public boolean isSeparateProfile() {
+        return separateProfile;
+    }
+
+    public void setSeparateProfile(boolean separateProfile) {
+        this.separateProfile = separateProfile;
     }
 
     public String getBeansxmlMode() {
