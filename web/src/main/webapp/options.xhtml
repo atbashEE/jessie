@@ -56,12 +56,13 @@
                     <p:selectBooleanCheckbox id="octopus" value="#{jessieDataBean.octopusFeature}"/>
                 </h:panelGrid>
             </h:panelGroup>
-            <h:panelGroup rendered="#{jessieDataBean.technologyStackTypeMP}">
+            <h:panelGroup rendered="#{jessieDataBean.technologyStackTypeMP}" id="mpOptions">
                 <h:panelGrid columns="3">
                     <p:outputLabel value="MicroProfile Server" for="supportedServer"/>
                     <p:selectOneMenu id="supportedServer" value="#{jessieDataBean.supportedServer}" required="true">
                         <f:selectItem/>
                         <f:selectItems value="${jessieDataBean.supportedServerItems}"/>
+                        <p:ajax update="mpOptions"/>
                     </p:selectOneMenu>
 
                     <h:panelGroup>
@@ -77,6 +78,10 @@
                         <f:selectItems value="#{jessieDataBean.specs}" var="spec" itemLabel="#{spec}"
                                        itemValue="#{spec}"/>
                     </p:selectManyCheckbox>
+
+                    <h:panelGroup/>
+                    <h:panelGroup/>
+                    <p:outputLabel rendered="#{jessieDataBean.supportedServer == 'helidon'}" value="JWT Auth is not yet supported with Helidon"/>
 
                 </h:panelGrid>
             </h:panelGroup>

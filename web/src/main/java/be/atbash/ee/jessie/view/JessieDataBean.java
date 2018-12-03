@@ -96,6 +96,7 @@ public class JessieDataBean implements Serializable {
 
     private void defineExampleSpecs(MicroProfileVersion version) {
         specs = new ArrayList<>();
+        selectedSpecs.clear();
 
         for (MicroprofileSpec microprofileSpec : MicroprofileSpec.values()) {
             if (microprofileSpec.getMpVersions().contains(version)) {
@@ -103,6 +104,12 @@ public class JessieDataBean implements Serializable {
                 selectedSpecs.add(microprofileSpec.getCode());
             }
         }
+
+        // TODO As long as Helidon doesn't support JWT_Auth
+        if (SupportedServer.HELIDON.getName().equals(supportedServer)) {
+            selectedSpecs.remove(MicroprofileSpec.JWT_AUTH.getCode());
+        }
+
     }
 
     private void defineSupportedServerItems(MicroProfileVersion version) {
@@ -117,11 +124,22 @@ public class JessieDataBean implements Serializable {
     }
 
     private void randomizeSupportedServers() {
-        Random rnd = new Random();
-        Map<Integer, SelectItem> data = supportedServerItems
-                .stream().collect(Collectors.toMap(s -> rnd.nextInt(500),
-                        Function.identity()));
+        Map<Integer, SelectItem> data = null;
 
+        boolean randomValuesOk = false;
+        while (!randomValuesOk) {
+            Random rnd = new Random();
+            try {
+                data = supportedServerItems
+                        .stream().collect(Collectors.toMap(s -> rnd.nextInt(500),
+                                Function.identity()));
+
+                randomValuesOk = true;
+            } catch (IllegalStateException e) {
+                // We have the same random value, try again.
+            }
+
+        }
         supportedServerItems = new ArrayList<>(data.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
@@ -156,6 +174,11 @@ public class JessieDataBean implements Serializable {
 
         if (technologyStackType == TechnologyStack.MP && "options".equals(activeScreen) && supportedServer.trim().isEmpty()) {
             addErrorMessage(facesContext, "Supported server selection is required");
+        }
+
+        if (technologyStackType == TechnologyStack.MP && SupportedServer.HELIDON.getName().equals(supportedServer)) {
+            // Make sure JWT auth is not selected for Helidon
+            selectedSpecs.remove(MicroprofileSpec.JWT_AUTH.getCode());
         }
     }
 
